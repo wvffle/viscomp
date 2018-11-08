@@ -2,22 +2,21 @@ const ZWSP = unescape('%u200b')
 const ZWNJ = unescape('%u200c')
 const ZWJ = unescape('%u200d')
 
-const map = [ ZWNJ, ZWSP ]
+let charmap = [ ZWNJ, ZWSP, ZWJ ]
 
 export default {
-  ZWSP, ZWNJ, ZWJ,
-  map,
+  ZWSP, ZWNJ, ZWJ, charmap,
   compress (c) {
-    const binary = c.toString(2)
+    const binary = c.toString(charmap.length)
 
-    return binary.replace(/./g, bit => map[bit])
+    return binary.replace(/./g, bit => charmap[bit])
   },
   decompress (str) {
     let binary = ''
     for (const char of str) {
-      binary += map.indexOf(char)
+      binary += charmap.indexOf(char)
     }
 
-    return String.fromCharCode(parseInt(binary, 2))
+    return String.fromCharCode(parseInt(binary, charmap.length))
   }
 }
