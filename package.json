@@ -1,11 +1,11 @@
 {
   "name": "@waff/viscomp",
-  "version": "1.1.0",
-  "main": "src/index.js",
+  "version": "1.2.0",
+  "main": "lib/index.js",
   "author": "Kasper Seweryn <casper@wvffle.net>",
   "license": "MIT",
   "scripts": {
-    "prepublish": "rollup -c rollup.config.js"
+    "prepublish": "rollup -c rollup.config.js && rollup src/index.js -f cjs -o lib/viscomp.js"
   },
   "devDependencies": {
     "rollup": "^0.67.0"
